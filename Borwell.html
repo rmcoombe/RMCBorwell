@@ -1,0 +1,100 @@
+<DOCTYPE html>
+	<html>
+		<head>
+			<title>Room Dimensions</title>
+			<link rel="stylesheet" 
+			href="styles/paint.css" type="text/css"> <!-- referencing my style sheet-->
+
+		<head>
+
+		<script>
+		//Creating my variables
+		var width;
+		var length;
+		var height;
+		var squared;
+		var volume;
+		var coverage;
+		var wallspace;
+		var paintNeeded;
+		
+		
+		
+		
+		//Creating my functions
+		
+		//This function calculates the floor's area based on the supplied information
+		function floorArea(){
+			var width=document.getElementById("width").value; //Setting the width value based on the user input
+			var length=document.getElementById("length").value; //Setting the length value based on the user input
+			var squared=width*length; //Calculating the area in squared metres
+			document.getElementById("floorArea").innerHTML="The area of your floor is " + squared + "M&#178"; //Displaying the area
+		}
+		
+		//This function calculates the room's volume based on the supplied information
+		function volumeOfRoom(){
+			var width=document.getElementById("width").value; //Setting the width value based on the user input
+			var length=document.getElementById("length").value; //Setting the length value based on the user input
+			var height=document.getElementById("height").value; //Setting the height value based on the user input
+			var volume=(width*length)*height; //Setting the volume variable
+		
+			document.getElementById("roomVolume").innerHTML="The volume of your room is " + volume + "M&#179"; //Displaying the volume
+		}
+		
+		//This function prompts the user for the coverage of their paint and then calculates the amount of paint required based on the supplies information
+		function paint(){
+			var width=document.getElementById("width").value; //Setting the width value based on the user input
+			
+			var length=document.getElementById("length").value; //Setting the length value based on the user input
+			
+			var height=document.getElementById("height").value; //Setting the height value based on the user input
+			
+			var coverage=parseInt(prompt("What is your paint coverage?\n(average paint converage is 10M² per litre)")) //Setting the coverage value based on the user input
+				
+				//While statement to ensure that the user only inputs a numeric value
+				while (isNaN(coverage)){ 
+					alert('You entered a non-numeric value') //Alert to tell the user they have entered a non-numeric value
+					var coverage=parseInt(prompt("What is your paint coverage?\n(average paint coverage is 10M² per litre)"))
+				}
+			
+			var wallspace=(height*(width*2)) + (height*(length*2));  //Calculating the square meterage of all walls
+			
+			var paintNeeded=wallspace/coverage //Calculating the paint required based on the coverage and the square meterage of the walls
+		
+			document.getElementById("paintRequired").innerHTML="You will need " +paintNeeded + " litres of paint" //Displaying the amount of paint required
+		}
+		
+		//This function calls all functions
+		function allFunctions(){
+			floorArea();
+			volumeOfRoom();
+			paint();
+		}
+		
+		</script>
+		
+		<body>
+		<fieldset>
+				<legend>User Inputs</legend>
+				<p id="Winput"><label for="WidthInput">Room Width:</label><input type="number" name="width" id="width">
+				<p id="Linput"><label for="LengthInput">Room Length:</label><input type="number" name="length" id="length">
+				<p id="Hinput"><label for="HeightInput">Room Height: <input type="number" name="height" id="height">
+				</br>
+				<p id="buttons">
+				
+				<input type="button" id="computeFloorArea" value="Floor Area" onclick="floorArea()">
+				<input type="button" id="computeRoomVolume" value="Room Volume" onclick="volumeOfRoom()">
+				<input type="button" id="computePaint" value="Paint Required" onclick="paint()">
+				<input type="button" id="computeAll" value="All" onclick="allFunctions()">
+				</p>
+		</fieldset>
+		<aside>
+		<p id="floorArea"></p>
+		<p id="roomVolume"></p>
+		<p id="paintRequired"></p>
+		</aside>
+		
+		</body>
+	</html>
+	
+	
